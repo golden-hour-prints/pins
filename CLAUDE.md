@@ -4,7 +4,7 @@ This repo runs the daily Pinterest routine for **Golden Hour Prints** (owner: So
 Product: *Easy Coloring Book for Seniors with Dementia and Alzheimer's* — https://www.amazon.com/dp/B0HLMN3TBJ
 Pinterest account: `garaaouchsouhaib` (display name Golden Hour Prints), signed in inside the built-in browser pane of Souhaib's Claude desktop app.
 
-Souhaib approved this routine in chat on 2026-10-02: one pin per day from `queue.json`, saving 3–5 relevant pins per day to his boards, and a weekly report. Do nothing outside this list.
+Souhaib approved this routine in chat on 2026-10-02 (posting automatically, no per-pin confirmation): one pin per day from `queue.json`, saving 3–5 relevant pins per day to his boards, and a weekly report. Do nothing outside this list.
 
 ## Daily run (target: under 15 minutes)
 
@@ -28,4 +28,4 @@ Souhaib approved this routine in chat on 2026-10-02: one pin per day from `queue
 - Never delete pins or boards.
 - Never claim the book treats, slows or improves dementia or memory.
 - At most 1 own pin and 5 saves per day. If Pinterest shows any warning, captcha, "unusual activity" or a 403/429 error, stop at once and tell Souhaib.
-- Keep "AI-modified" honest: our art is AI-made.
+- Our art is AI-made. If you ever use the pin builder UI instead of `post_pin.js`, switch on "Mark as AI-Modified".
