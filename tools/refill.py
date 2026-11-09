@@ -1,7 +1,7 @@
 """Add N new pins to queue.json (images rendered into images/).
 
 Usage: python tools/refill.py [N]   (default 10)
-Order: before/after for designs not yet used -> colored spotlights -> tip cards.
+Order: before/after for designs not yet used -> spotlights and tip cards interleaved (2:1).
 Seasonal designs are moved to the front in their season.
 """
 import json, os, sys, datetime, random
@@ -46,7 +46,12 @@ def main(n=10):
     used = {(i.get("kind"), i.get("design")) for i in q}
     month = datetime.date.today().month
     order = SEASON.get(month, []) + [s for s in names if s not in SEASON.get(month, [])]
-    cands = [("before_after", s) for s in order] + [("spotlight", s) for s in order] + [("tips", t[0]) for t in TIPS]
+    # 2026-11-09 weekly review: 20 before/after pins drew 0 impressions in 30 days, so after the
+    # remaining before/afters, alternate formats (2 spotlights, 1 tip card) instead of a long single-format run.
+    spots = [("spotlight", s) for s in order]; tips = [("tips", t[0]) for t in TIPS]; mixed = []
+    while spots or tips:
+        mixed += spots[:2] + tips[:1]; spots, tips = spots[2:], tips[1:]
+    cands = [("before_after", s) for s in order] + mixed
     cands = [c for c in cands if c not in used]
     rnd = random.Random(len(q)); added = 0
     for kind, key in cands:
